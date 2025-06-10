@@ -7,8 +7,14 @@ interface PostPageProps {
   };
 }
 
-export async function generateMetadata({}: PostPageProps): Promise<Metadata> {
-  // In a real app, you'd fetch the post data here
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  // Temporary use to silence warning
+  void params;
+
   return {
     title: `Blog Post - BlogSpace`,
     description: "Read this amazing blog post on BlogSpace",
