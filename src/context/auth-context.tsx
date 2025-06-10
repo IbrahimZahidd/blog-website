@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { createContext, useContext, useEffect, useState } from "react";
 import type { User, AuthContextType } from "@/types";
 import { useToast } from "./toast-context";
@@ -27,13 +26,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string) => {
     setLoading(true);
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Mock authentication - in real app, this would be an API call
       const users = JSON.parse(localStorage.getItem("blogspace_users") || "[]");
       const foundUser = users.find((u: User) => u.email === email);
 
@@ -41,7 +39,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         throw new Error("User not found");
       }
 
-      // In real app, you'd verify password hash
       const userData: User = {
         ...foundUser,
         updatedAt: new Date(),
@@ -61,10 +58,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const register = async (email: string, password: string, name: string) => {
     setLoading(true);
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Check if user already exists
       const users = JSON.parse(localStorage.getItem("blogspace_users") || "[]");
       const existingUser = users.find((u: User) => u.email === email);
 
