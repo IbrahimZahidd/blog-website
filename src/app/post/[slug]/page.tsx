@@ -1,12 +1,7 @@
 import { Metadata } from "next";
 import PostContent from "@/components/post/post-content";
 
-interface PostPageProps {
-  params: {
-    slug: string;
-  };
-}
-
+// ✅ Correct way to type params for generateMetadata
 export async function generateMetadata({
   params,
 }: {
@@ -21,6 +16,7 @@ export async function generateMetadata({
   };
 }
 
-export default function PostPage({ params }: PostPageProps) {
+// ✅ Main page component
+export default function PostPage({ params }: { params: { slug: string } }) {
   return <PostContent slug={params.slug} />;
 }
