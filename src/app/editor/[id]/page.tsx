@@ -1,17 +1,16 @@
 "use client";
 
-import { use } from "react"; // Import the hook to unwrap promises
 import ProtectedRoute from "@/components/ui/protected-route";
 import PostEditor from "@/components/editor/post-editor";
 
 interface EditPostPageProps {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 }
 
 export default function EditPostPage({ params }: EditPostPageProps) {
-  const { id } = use(params); // ✅ Unwrap the Promise using use()
+  const { id } = params; // ✅ No need for `use()`, since it's not a Promise
 
   return (
     <ProtectedRoute>
